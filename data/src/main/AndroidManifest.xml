@@ -1,3 +1,7 @@
 <manifest
-        package="msa.data"
-        />
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        package="msa.data">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+</manifest>

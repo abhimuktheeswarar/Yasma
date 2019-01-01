@@ -3,6 +3,8 @@ package msa.data
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.serializationConverterFactory
 import kotlinx.serialization.json.JSON
+import msa.data.inmemory.InMemoryDataStore
+import msa.data.local.LocalDataStore
 import msa.data.remote.RemoteDataStore
 import msa.data.remote.YasmaApi
 import okhttp3.MediaType
@@ -17,6 +19,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 class DataStoreFactory(context: Context) {
 
+    val inMemoryDataStore: InMemoryDataStore = InMemoryDataStore()
+    val localDataStore: LocalDataStore = LocalDataStore()
     val remoteDataStore: RemoteDataStore
 
     init {

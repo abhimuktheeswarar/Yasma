@@ -39,25 +39,26 @@ ext.versions = [
         koin                        : '1.0.2',
         anko                        : '0.10.8',
         epoxy                       : '3.0.0',
-        glide                       : '4.8.0',
-        materialDialogs             : '2.0.0-rc3',
-        runtimePermission           : '1.0.5',
-        inlineActivityResult        : '1.0.0',
+        glide               : '4.8.0',
+        materialDialogs     : '2.0.0-rc3',
+        runtimePermission   : '1.0.5',
+        inlineActivityResult: '1.0.0',
 
 
-        materialProgressBar         : '1.4.1',
+        materialProgressBar : '1.4.1',
 
 
-        timber                      : '4.7.1',
-        leakCanary                  : '1.6.1',
+        timber              : '4.7.1',
+        leakCanary          : '1.6.1',
 
-        junit                       : '4.12',
-        kotlinTest                  : '1.3.10',
-        kotlinMockito               : '1.5.0',
-        assertJ                     : '3.8.0',
+        junit               : '4.12',
+        kotlinTest          : '1.3.10',
+        kotlinMockito       : '1.5.0',
+        assertJ             : '3.8.0',
+        mockito             : '2.23.4',
 
-        runner                      : '1.1.0',
-        espresso                    : '3.1.0'
+        runner              : '1.1.0',
+        espresso            : '3.1.0'
 
 ]
 
@@ -153,6 +154,8 @@ ext.testLibraries = [
         junit          : "junit:junit:$versions.junit",
         kotlinTest     : "org.jetbrains.kotlin:kotlin-test:$versions.kotlinTest",
         kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlinTest",
+
+        mockito        : "org.mockito:mockito-core:$versions.mockito",
 
         mockWebServer  : "com.squareup.okhttp3:mockwebserver:$versions.okhttp",
         retrofitMock   : "com.squareup.retrofit2:retrofit-mock:$versions.retrofit",
