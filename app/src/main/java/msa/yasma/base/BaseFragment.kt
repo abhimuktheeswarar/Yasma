@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
+/**
+ * Created by Abhi Muktheeswarar.
+ */
 
 abstract class BaseFragment : Fragment() {
 

@@ -5,6 +5,9 @@ import io.reactivex.Scheduler
 import msa.domain.core.Action
 import msa.domain.core.State
 
+/**
+ * Created by Abhi Muktheeswarar.
+ */
 
 abstract class UseCase constructor(
     private val threadScheduler: Scheduler,

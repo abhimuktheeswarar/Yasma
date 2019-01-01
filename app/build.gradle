@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
 
-        applicationId "msa.exhibit"
+        applicationId "msa.yasma"
         targetSdkVersion versions.targetSdk
         minSdkVersion versions.minSdk
 

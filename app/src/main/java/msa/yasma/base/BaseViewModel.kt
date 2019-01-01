@@ -11,6 +11,9 @@ import io.reactivex.functions.Consumer
 import msa.domain.core.Action
 import msa.domain.core.State
 
+/**
+ * Created by Abhi Muktheeswarar.
+ */
 
 abstract class BaseViewModel : ViewModel() {
 

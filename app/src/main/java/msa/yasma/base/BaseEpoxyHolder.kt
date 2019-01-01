@@ -5,6 +5,9 @@ import com.airbnb.epoxy.EpoxyHolder
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
+/**
+ * Created by Abhi Muktheeswarar.
+ */
 
 abstract class BaseEpoxyHolder : EpoxyHolder() {
 

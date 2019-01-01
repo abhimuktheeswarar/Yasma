@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/nav_main_graph"
+            app:startDestination="@id/postListFragment">
+
+    <fragment
+            android:id="@+id/postListFragment"
+            android:name="msa.yasma.post.list.PostListFragment"
+            android:label="@string/title_posts"/>
+    <fragment
+            android:id="@+id/albumListFragment"
+            android:name="msa.yasma.album.list.AlbumListFragment"
+            android:label="@string/title_albums"/>
+    <fragment
+            android:id="@+id/postDetailFragment"
+            android:name="msa.yasma.post.detail.PostDetailFragment"
+            android:label="PostDetailFragment"/>
+    <fragment
+            android:id="@+id/albumDetailFragment"
+            android:name="msa.yasma.album.detail.AlbumDetailFragment"
+            android:label="AlbumDetailFragment"/>
+
+</navigation>

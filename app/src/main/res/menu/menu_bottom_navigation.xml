@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/postListFragment"
+            android:icon="@drawable/ic_post_black_24dp"
+            android:title="@string/title_posts"/>
+
+    <item
+            android:id="@+id/albumListFragment"
+            android:icon="@drawable/ic_album_black_24dp"
+            android:title="@string/title_albums"/>
+
+</menu>

@@ -3,6 +3,10 @@ package msa.domain.core
 import com.jakewharton.rxrelay2.Relay
 import io.reactivex.Observable
 
+/**
+ * Created by Abhi Muktheeswarar.
+ */
+
 interface Action
 
 interface State
