@@ -1,5 +1,6 @@
 package msa.data.inmemory
 
+import androidx.collection.SparseArrayCompat
 import msa.domain.entities.*
 
 /**
@@ -9,13 +10,13 @@ import msa.domain.entities.*
 class InMemoryDataStore {
 
     private var posts = LinkedHashMap<Int, Post>()
-    private val postDetails = LinkedHashMap<Int, Post>()
-    private val postComments = LinkedHashMap<Int, List<PostComment>>()
+    private val postDetails = SparseArrayCompat<Post>()
+    private val postComments = SparseArrayCompat<List<PostComment>>()
     private var albums = LinkedHashMap<Int, Album>()
-    private var albumDetails = LinkedHashMap<Int, Album>()
-    private val albumPhotos = LinkedHashMap<Int, List<Photo>>()
+    private var albumDetails = SparseArrayCompat<Album>()
+    private val albumPhotos = SparseArrayCompat<List<Photo>>()
     private var users = LinkedHashMap<Int, User>()
-    private val userDetails = LinkedHashMap<Int, User>()
+    private val userDetails = SparseArrayCompat<User>()
 
     fun setPosts(postList: List<Post>) {
 
@@ -25,13 +26,14 @@ class InMemoryDataStore {
 
     fun setPostDetail(postDetail: Post) {
 
-        postDetails[postDetail.id] = postDetail
+
+        postDetails.put(postDetail.id, postDetail)
 
     }
 
     fun setPostComments(postCommentList: List<PostComment>) {
 
-        postComments[postCommentList.first().id] = postCommentList
+        postComments.put(postCommentList.first().id, postCommentList)
 
     }
 
@@ -43,19 +45,18 @@ class InMemoryDataStore {
 
     fun setAlbumDetail(albumDetail: Album) {
 
-        albumDetails[albumDetail.id] = albumDetail
-
+        albumDetails.put(albumDetail.id, albumDetail)
     }
 
     fun setAlbumDetail(photos: List<Photo>) {
 
-        albumPhotos[photos.first().albumId] = photos
+        albumPhotos.put(photos.first().albumId, photos)
 
     }
 
     fun setPhotos(photoList: List<Photo>) {
 
-        albumPhotos[photoList.first().id] = photoList
+        albumPhotos.put(photoList.first().id, photoList)
 
     }
 
@@ -67,7 +68,7 @@ class InMemoryDataStore {
 
     fun setUserDetail(userDetail: User) {
 
-        userDetails[userDetail.id] = userDetail
+        userDetails.put(userDetail.id, userDetail)
 
     }
 

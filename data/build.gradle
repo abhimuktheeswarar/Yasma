@@ -34,6 +34,7 @@ dependencies {
     implementation project(':domain')
 
     implementation androidLibraries.rxAndroid
+    implementation androidLibraries.appCompatV4
 
     implementation libraries.okhttp
     implementation libraries.okHttpInterceptor
@@ -48,6 +49,7 @@ dependencies {
     testImplementation testLibraries.kotlinTest
     testImplementation testLibraries.kotlinTestJunit
     testImplementation testLibraries.mockito
+
     testImplementation testLibraries.mockWebServer
     testImplementation testLibraries.retrofitMock
 

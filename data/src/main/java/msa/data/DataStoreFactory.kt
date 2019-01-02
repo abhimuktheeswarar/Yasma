@@ -17,7 +17,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
  * Created by Abhi Muktheeswarar.
  */
 
-class DataStoreFactory(context: Context) {
+class DataStoreFactory(context: Context, baseUrl: String = "https://jsonplaceholder.typicode.com/") {
 
     val inMemoryDataStore: InMemoryDataStore = InMemoryDataStore()
     val localDataStore: LocalDataStore = LocalDataStore()
@@ -35,7 +35,7 @@ class DataStoreFactory(context: Context) {
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(serializationConverterFactory(MediaType.get("application/json"), JSON))
-            .baseUrl("https://jsonplaceholder.typicode.com/")
+            .baseUrl(baseUrl)
             .build()
             .create(YasmaApi::class.java)
 
