@@ -11,7 +11,7 @@ import kotlin.reflect.KProperty
 
 abstract class BaseEpoxyHolder : EpoxyHolder() {
 
-    lateinit var rootView: View
+    private lateinit var rootView: View
 
     override fun bindView(itemView: View) {
         rootView = itemView

@@ -2,6 +2,7 @@ package msa.domain.interactor
 
 import io.reactivex.Observable
 import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
 import msa.domain.core.Action
 import msa.domain.core.State
 
@@ -10,7 +11,6 @@ import msa.domain.core.State
  */
 
 abstract class UseCase constructor(
-    private val threadScheduler: Scheduler,
     private val postExecutionScheduler: Scheduler
 ) {
 
@@ -18,7 +18,7 @@ abstract class UseCase constructor(
 
     fun execute(action: Action, state: State): Observable<Action> {
         return buildUseCaseObservable(action, state)
-            .subscribeOn(threadScheduler)
+            .subscribeOn(Schedulers.io())
             .observeOn(postExecutionScheduler)
     }
 }
