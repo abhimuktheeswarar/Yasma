@@ -32,6 +32,7 @@ ext.versions = [
         viewModel                   : '2.0.0-rc01',
         workManagerVersion          : '1.0.0-alpha10',
         navigationVersion           : '1.0.0-alpha07',
+        lifeCycle                   : '2.0.0',
 
         rxAndroid                   : '2.1.0',
         rxBinding                   : '3.0.0-alpha1',
@@ -170,6 +171,7 @@ ext.testLibraries = [
 
         androidTestCore: "androidx.test:core:$versions.androidx",
         androidJunit   : "androidx.test.ext:junit:$versions.androidx",
+        archTestCore   : "android.arch.core:core-testing:$versions.lifeCycle",
         runner         : "androidx.test:runner:$versions.runner",
         espresso       : "androidx.test.espresso:espresso-core:$versions.espresso",
         navigation     : "android.arch.navigation:navigation-testing:$versions.navigationVersion"

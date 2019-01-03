@@ -19,8 +19,9 @@ import msa.domain.repository.Repository
 
 class GetPosts(
     private val repository: Repository,
+    threadExecutor: Scheduler,
     postExecutionScheduler: Scheduler
-) : UseCase(postExecutionScheduler) {
+) : UseCase(threadExecutor, postExecutionScheduler) {
 
     override fun buildUseCaseObservable(action: Action, state: State): Observable<Action> {
         val params = Params(loadFromCache = action !is PostAction.RefreshPostsAction)
@@ -47,6 +48,29 @@ class GetPosts(
 
             })
     }
+
+    fun getPosts(): Observable<Action> = Observable.zip(
+        repository.getPosts(Params(false)),
+        repository.getUsers(Params(false)),
+        BiFunction { postsResult, usersResult ->
+
+            val validation = Validation(postsResult, usersResult)
+
+            if (validation.hasFailure) {
+
+                PostAction.ErrorLoadingPostsAction(validation.failures.first())
+
+            } else {
+
+                val posts = postsResult.get()
+                val users = usersResult.get().associateBy { it.id }
+
+                val postsData = posts.map { post -> Pair(post, users[post.userId]!!) }
+
+                PostAction.PostsLoadedAction(postsData)
+            }
+
+        })
 
     fun loadPostsSideEffect(actions: Observable<Action>, state: StateAccessor<State>): Observable<Action> =
         actions.ofType(PostAction.LoadPostsAction::class.java)

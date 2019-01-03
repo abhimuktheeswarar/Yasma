@@ -73,6 +73,10 @@ dependencies {
     testImplementation testLibraries.junit
     testImplementation testLibraries.kotlinTest
     testImplementation testLibraries.kotlinTestJunit
+    testImplementation testLibraries.archTestCore
+    testImplementation testLibraries.koinTest
+    testImplementation testLibraries.mockWebServer
+    testImplementation testLibraries.retrofitMock
 
     androidTestImplementation testLibraries.androidTestCore
     androidTestImplementation testLibraries.androidJunit
