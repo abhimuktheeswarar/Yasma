@@ -10,6 +10,7 @@ import msa.domain.actionstate.PostDetailState
 import msa.yasma.R
 import msa.yasma.base.BaseFragment
 import msa.yasma.base.BaseKotlinEpoxyModel
+import msa.yasma.common.items.DetailHeaderItemModel
 import msa.yasma.common.items.LoadingItemModel_
 import msa.yasma.common.items.UserDetailItemModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,7 +30,6 @@ class PostDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         epoxyRecyclerView.setItemSpacingDp(8)
-        swipeRefreshLayout.setOnRefreshListener { postDetailViewModel.input.accept(PostAction.RefreshPostsAction) }
         swipeRefreshLayout.isEnabled = false
     }
 
@@ -61,7 +61,8 @@ class PostDetailFragment : BaseFragment() {
 
             state.post?.let { post ->
 
-                PostDetailItemModel(title = post.title, body = post.body).id(PostDetailItemModel.ID).addTo(controller)
+                DetailHeaderItemModel(title = post.title, body = post.body).id(DetailHeaderItemModel.ID)
+                    .addTo(controller)
 
             }
 
@@ -90,29 +91,6 @@ class PostDetailFragment : BaseFragment() {
         state.exception?.let {
             Timber.e(it)
         }
-
-        swipeRefreshLayout.isEnabled = state.post != null && state.user != null && !state.comments.isNullOrEmpty()
-        swipeRefreshLayout.isEnabled = !state.refreshing
-        swipeRefreshLayout.isRefreshing = state.refreshing
-
-    }
-}
-
-data class PostDetailItemModel(private val title: String, private val body: String) :
-    BaseKotlinEpoxyModel(R.layout.item_post_detail) {
-
-    companion object {
-
-        const val ID = "PostDetailItemModel"
-    }
-
-    private val titleTextView by bind<TextView>(R.id.text_title)
-    private val bodyTextView by bind<TextView>(R.id.text_body)
-
-    override fun bind() {
-
-        titleTextView.text = title
-        bodyTextView.text = body
 
     }
 }

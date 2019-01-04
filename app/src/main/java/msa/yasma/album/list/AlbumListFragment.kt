@@ -3,10 +3,12 @@ package msa.yasma.album.list
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_list.*
 import msa.domain.actionstate.AlbumAction
 import msa.domain.actionstate.AlbumListState
 import msa.yasma.R
+import msa.yasma.album.detail.AlbumDetailFragmentDirections
 import msa.yasma.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
@@ -18,7 +20,20 @@ import timber.log.Timber
 class AlbumListFragment : BaseFragment() {
 
     private val albumListViewModel by sharedViewModel<AlbumListViewModel>()
-    private val albumListController by lazy { AlbumListController { action -> albumListViewModel.input.accept(action) } }
+    private val albumListController by lazy {
+        AlbumListController { action ->
+
+            if (action is AlbumAction.LoadAlbumDetailAction) {
+
+                findNavController().navigate(
+                    AlbumDetailFragmentDirections.navigateToAlbumDetail(
+                        action.albumId,
+                        action.userId
+                    )
+                )
+            }
+        }
+    }
 
     override fun getLayoutId(): Int = R.layout.fragment_list
 

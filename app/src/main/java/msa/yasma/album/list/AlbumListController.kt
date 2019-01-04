@@ -32,6 +32,7 @@ class AlbumListController(private val itemActionListener: (action: Action) -> Un
 
                 id(album.id)
                 itemId(album.id)
+                userId(user.id)
                 itemType(SimpleItemModel.SimpleItemType.ALBUM)
                 title(album.title)
                 name(user.name)

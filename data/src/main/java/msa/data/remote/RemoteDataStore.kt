@@ -33,7 +33,8 @@ class RemoteDataStore(private val yasmaApi: YasmaApi) {
     }
 
     fun getAlbumPhotos(albumId: Int): Observable<Result<List<Photo>, Exception>> {
-        return yasmaApi.getAlbumPhotos(albumId).map { Result.of(it) }.onErrorReturn { Result.error(Exception(it)) }
+        return yasmaApi.getAlbumPhotos(albumId).map { it.filter { photo -> photo.albumId == albumId } }
+            .map { Result.of(it) }.onErrorReturn { Result.error(Exception(it)) }
     }
 
     fun getUsers(): Observable<Result<List<User>, Exception>> {

@@ -1,9 +1,6 @@
 package msa.domain
 
-import msa.domain.entities.Album
-import msa.domain.entities.Post
-import msa.domain.entities.PostComment
-import msa.domain.entities.User
+import msa.domain.entities.*
 
 /**
  * Created by Abhi Muktheeswarar.
@@ -94,6 +91,20 @@ object DummyData {
         }
 
         return albums
+    }
+
+    fun getPhotos(): List<Photo> {
+
+        val photos = arrayListOf<Photo>()
+
+        for (i in 1..10) {
+
+            val photo = Photo(id = i, albumId = i, title = "t$i", thumbnailUrl = "t$i", url = "u$i")
+
+            photos.add(photo)
+        }
+
+        return photos
     }
 
 }

@@ -5,12 +5,15 @@ import io.reactivex.schedulers.Schedulers
 import msa.data.DataRepository
 import msa.data.DataStoreFactory
 import msa.domain.repository.Repository
+import msa.domain.statemachine.AlbumDetailStateMachine
 import msa.domain.statemachine.AlbumListStateMachine
 import msa.domain.statemachine.PostDetailStateMachine
 import msa.domain.statemachine.PostListStateMachine
+import msa.domain.usecases.GetAlbumDetail
 import msa.domain.usecases.GetAlbums
 import msa.domain.usecases.GetPostDetail
 import msa.domain.usecases.GetPosts
+import msa.yasma.album.detail.AlbumDetailViewModel
 import msa.yasma.album.list.AlbumListViewModel
 import msa.yasma.post.detail.PostDetailViewModel
 import msa.yasma.post.list.PostListViewModel
@@ -35,6 +38,7 @@ val stateMachineModule = module {
     factory { PostDetailStateMachine(get()) }
 
     factory { AlbumListStateMachine(get()) }
+    factory { AlbumDetailStateMachine(get()) }
 
 }
 
@@ -44,6 +48,7 @@ val useCaseModule = module {
     factory { GetPostDetail(get(), get(name = "threadExecutor"), get(name = "postExecutionScheduler")) }
 
     factory { GetAlbums(get(), get(name = "threadExecutor"), get(name = "postExecutionScheduler")) }
+    factory { GetAlbumDetail(get(), get(name = "threadExecutor"), get(name = "postExecutionScheduler")) }
 }
 
 val viewModelModule = module {
@@ -52,5 +57,6 @@ val viewModelModule = module {
     viewModel { PostDetailViewModel(get()) }
 
     viewModel { AlbumListViewModel(get()) }
+    viewModel { AlbumDetailViewModel(get()) }
 
 }

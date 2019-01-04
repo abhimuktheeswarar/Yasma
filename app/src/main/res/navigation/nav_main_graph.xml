@@ -30,10 +30,23 @@
     <fragment
             android:id="@+id/albumDetailFragment"
             android:name="msa.yasma.album.detail.AlbumDetailFragment"
-        android:label="AlbumDetailFragment" />
+        android:label="AlbumDetailFragment">
+
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+
+    </fragment>
 
     <action
         android:id="@+id/navigate_to_postDetail"
         app:destination="@id/postDetailFragment" />
+
+    <action
+        android:id="@+id/navigate_to_albumDetail"
+        app:destination="@id/albumDetailFragment" />
 
 </navigation>

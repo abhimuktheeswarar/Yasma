@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
+import msa.domain.actionstate.AlbumAction
 import msa.domain.actionstate.PostAction
 import msa.domain.core.Action
 import msa.yasma.R
@@ -50,8 +51,12 @@ abstract class SimpleItemModel : EpoxyModelWithHolder<SimpleItemModel.SimpleItem
                     postId = itemId,
                     userId = userId
                 )
+            ) else if (itemType == SimpleItemType.ALBUM) itemActionListener(
+                AlbumAction.LoadAlbumDetailAction(
+                    albumId = itemId,
+                    userId = userId
+                )
             )
-
         }
     }
 
