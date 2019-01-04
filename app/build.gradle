@@ -21,14 +21,20 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "msa.yasma.TestYasmaAppRunner"
 
     }
 
     buildTypes {
+
+        debug {
+            manifestPlaceholders = [usesCleartextTraffic: "true"]
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [usesCleartextTraffic: "false"]
         }
     }
 }
@@ -74,9 +80,6 @@ dependencies {
     testImplementation testLibraries.kotlinTest
     testImplementation testLibraries.kotlinTestJunit
     testImplementation testLibraries.archTestCore
-    testImplementation testLibraries.koinTest
-    testImplementation testLibraries.mockWebServer
-    testImplementation testLibraries.retrofitMock
 
     androidTestImplementation testLibraries.androidTestCore
     androidTestImplementation testLibraries.androidJunit
@@ -85,4 +88,8 @@ dependencies {
     androidTestImplementation testLibraries.espresso
     androidTestImplementation testLibraries.espressoContrib
     androidTestImplementation testLibraries.navigation
+    androidTestImplementation testLibraries.koinTest
+    androidTestImplementation testLibraries.mockWebServer
+    androidTestImplementation testLibraries.retrofitMock
+
 }
