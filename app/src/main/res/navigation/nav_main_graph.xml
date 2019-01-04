@@ -41,6 +41,20 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="msa.yasma.album.imageviewer.ImageViewerFragment"
+        android:label="ImageViewerFragment">
+
+        <argument
+            android:name="photoId"
+            app:argType="integer" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+
+    </fragment>
+
     <action
         android:id="@+id/navigate_to_postDetail"
         app:destination="@id/postDetailFragment" />
@@ -48,5 +62,9 @@
     <action
         android:id="@+id/navigate_to_albumDetail"
         app:destination="@id/albumDetailFragment" />
+
+    <action
+        android:id="@+id/navigate_to_imageViewer"
+        app:destination="@id/imageViewerFragment" />
 
 </navigation>

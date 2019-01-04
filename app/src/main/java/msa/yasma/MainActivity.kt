@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayShowTitleEnabled(true)
                 }
 
-                R.id.postDetailFragment, R.id.albumDetailFragment -> {
+                R.id.postDetailFragment, R.id.albumDetailFragment, R.id.imageViewerFragment -> {
 
                     bottomNavigationView.visibility = View.GONE
                     supportActionBar?.setDisplayShowTitleEnabled(false)

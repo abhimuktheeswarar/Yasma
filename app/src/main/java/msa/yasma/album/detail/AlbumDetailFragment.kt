@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -13,6 +14,7 @@ import msa.domain.actionstate.AlbumAction
 import msa.domain.actionstate.AlbumDetailState
 import msa.domain.core.Action
 import msa.yasma.R
+import msa.yasma.album.imageviewer.ImageViewerFragmentDirections
 import msa.yasma.base.BaseFragment
 import msa.yasma.base.BaseKotlinEpoxyModel
 import msa.yasma.common.items.DetailHeaderItemModel
@@ -32,6 +34,16 @@ class AlbumDetailFragment : BaseFragment() {
     override fun getLayoutId(): Int = R.layout.fragment_list
 
     private val itemActionListener: (action: Action) -> Unit = { action ->
+
+        if (action is AlbumAction.OpenFullScreenImageViewerAction) {
+
+            findNavController().navigate(
+                ImageViewerFragmentDirections.navigateToImageViewer(
+                    action.photoId,
+                    action.imageUrl
+                )
+            )
+        }
 
 
     }
