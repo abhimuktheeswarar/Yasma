@@ -1,6 +1,8 @@
 package msa.domain
 
+import msa.domain.entities.Album
 import msa.domain.entities.Post
+import msa.domain.entities.PostComment
 import msa.domain.entities.User
 
 /**
@@ -64,6 +66,34 @@ object DummyData {
         }
 
         return postsWithUser
+    }
+
+    fun getPostComments(): List<PostComment> {
+
+        val postComments = arrayListOf<PostComment>()
+
+        for (i in 1..10) {
+
+            val postComment = PostComment(id = i, name = "n$i", email = "e$i", postId = i, body = "body$i")
+
+            postComments.add(postComment)
+        }
+
+        return postComments
+    }
+
+    fun getAlbums(): List<Album> {
+
+        val albums = arrayListOf<Album>()
+
+        for (i in 1..10) {
+
+            val album = Album(id = i, title = "t$i", userId = i)
+
+            albums.add(album)
+        }
+
+        return albums
     }
 
 }

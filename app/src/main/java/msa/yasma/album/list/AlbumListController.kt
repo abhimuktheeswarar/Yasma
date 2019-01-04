@@ -1,8 +1,8 @@
-package msa.yasma.post.list
+package msa.yasma.album.list
 
 import com.airbnb.epoxy.AutoModel
 import com.airbnb.epoxy.TypedEpoxyController
-import msa.domain.actionstate.PostListState
+import msa.domain.actionstate.AlbumListState
 import msa.domain.core.Action
 import msa.yasma.common.items.LoadingItemModel_
 import msa.yasma.common.items.SimpleItemModel
@@ -12,31 +12,29 @@ import msa.yasma.common.items.simpleItem
  * Created by Abhi Muktheeswarar.
  */
 
-class PostListController(private val itemActionListener: (action: Action) -> Unit) :
-    TypedEpoxyController<PostListState>() {
+class AlbumListController(private val itemActionListener: (action: Action) -> Unit) :
+    TypedEpoxyController<AlbumListState>() {
 
     @AutoModel
     lateinit var loadingItemModel: LoadingItemModel_
 
-    fun setState(state: PostListState) {
+    fun setState(state: AlbumListState) {
         setData(state)
     }
 
-    override fun buildModels(state: PostListState) {
+    override fun buildModels(state: AlbumListState) {
 
         loadingItemModel.addIf(state.loading, this)
 
-        state.posts?.forEach { (post, user) ->
+        state.albums?.forEach { (album, user) ->
 
             simpleItem {
 
-                id(post.id)
-                itemId(post.id)
-                userId(user.id)
-                itemType(SimpleItemModel.SimpleItemType.POST)
-                title(post.title)
+                id(album.id)
+                itemId(album.id)
+                itemType(SimpleItemModel.SimpleItemType.ALBUM)
+                title(album.title)
                 name(user.name)
-                body(post.body)
                 itemActionListener(itemActionListener)
             }
         }

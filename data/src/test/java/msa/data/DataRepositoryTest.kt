@@ -7,6 +7,8 @@ import io.reactivex.observers.TestObserver
 import msa.data.Utils.getJson
 import msa.domain.entities.Params
 import msa.domain.entities.Post
+import msa.domain.entities.PostComment
+import msa.domain.entities.User
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 /**
  * Created by Abhi Muktheeswarar.
@@ -127,6 +130,86 @@ class DataRepositoryTest {
         assert(inMemoryResult.component1()?.id == 1)
 
     }
+
+
+    @Test
+    fun testGetPostComments() {
+
+        val remoteTestObserver = TestObserver<Result<List<PostComment>, Exception>>()
+
+        val path = "/posts/1/comments"
+
+        val mockReponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(getJson("/json/postcomments.json"))
+
+        mockWebServer.enqueue(mockReponse)
+
+        val params = Params(loadFromCache = false, id = 1)
+
+        dataRepository.getPostComments(params).subscribe(remoteTestObserver)
+        remoteTestObserver.awaitTerminalEvent(2, TimeUnit.SECONDS)
+
+        remoteTestObserver.assertNoErrors()
+
+        remoteTestObserver.assertValueCount(1)
+
+        val request = mockWebServer.takeRequest()
+        assertEquals(path, request.path)
+
+        val remoteResult = remoteTestObserver.values().first()
+
+        assertFalse(Validation(remoteResult).hasFailure)
+
+        val inMemoryResult = remoteTestObserver.values().first()
+
+        assertNotNull(inMemoryResult.component1())
+
+        assertNull(inMemoryResult.component1()?.find { it.postId != 1 })
+
+    }
+
+    @Test
+    fun testGetUserDetail() {
+
+        val remoteTestObserver = TestObserver<Result<User, Exception>>()
+
+        val path = "/users/1"
+
+        val mockReponse = MockResponse()
+            .setResponseCode(200)
+            .setBody(getJson("/json/userdetail.json"))
+
+        mockWebServer.enqueue(mockReponse)
+
+        val params = Params(loadFromCache = false, id = 1)
+
+        dataRepository.getUserDetail(params).subscribe(remoteTestObserver)
+        remoteTestObserver.awaitTerminalEvent(2, TimeUnit.SECONDS)
+
+        remoteTestObserver.assertNoErrors()
+
+        remoteTestObserver.assertValueCount(1)
+
+        val request = mockWebServer.takeRequest()
+        assertEquals(path, request.path)
+
+        val remoteResult = remoteTestObserver.values().first()
+
+        assertFalse(Validation(remoteResult).hasFailure)
+
+        val inMemoryTestObserver = TestObserver<Result<User, Exception>>()
+
+        dataRepository.getUserDetail(params.copy(loadFromCache = true)).subscribe(inMemoryTestObserver)
+
+        val inMemoryResult = remoteTestObserver.values().first()
+
+        assertNotNull(inMemoryResult.component1())
+
+        assert(inMemoryResult.component1()?.id == 1)
+
+    }
+
 
     @After
     @Throws

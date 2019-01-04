@@ -12,13 +12,28 @@
             android:id="@+id/albumListFragment"
             android:name="msa.yasma.album.list.AlbumListFragment"
             android:label="@string/title_albums"/>
+
     <fragment
             android:id="@+id/postDetailFragment"
             android:name="msa.yasma.post.detail.PostDetailFragment"
-            android:label="PostDetailFragment"/>
+        android:label="PostDetailFragment">
+
+        <argument
+            android:name="postId"
+            app:argType="integer" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+
+    </fragment>
+
     <fragment
             android:id="@+id/albumDetailFragment"
             android:name="msa.yasma.album.detail.AlbumDetailFragment"
-            android:label="AlbumDetailFragment"/>
+        android:label="AlbumDetailFragment" />
+
+    <action
+        android:id="@+id/navigate_to_postDetail"
+        app:destination="@id/postDetailFragment" />
 
 </navigation>

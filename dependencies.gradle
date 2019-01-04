@@ -173,7 +173,9 @@ ext.testLibraries = [
         androidJunit   : "androidx.test.ext:junit:$versions.androidx",
         archTestCore   : "android.arch.core:core-testing:$versions.lifeCycle",
         runner         : "androidx.test:runner:$versions.runner",
+        rules          : "androidx.test:rules:$versions.runner",
         espresso       : "androidx.test.espresso:espresso-core:$versions.espresso",
+        espressoContrib: "androidx.test.espresso:espresso-contrib:$versions.espresso",
         navigation     : "android.arch.navigation:navigation-testing:$versions.navigationVersion"
 ]
 

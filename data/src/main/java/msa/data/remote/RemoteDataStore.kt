@@ -19,7 +19,9 @@ class RemoteDataStore(private val yasmaApi: YasmaApi) {
     }
 
     fun getPostComments(postId: Int): Observable<Result<List<PostComment>, Exception>> {
-        return yasmaApi.getPostComments(postId).map { Result.of(it) }.onErrorReturn { Result.error(Exception(it)) }
+        return yasmaApi.getPostComments(postId).map { it.filter { postComment -> postComment.postId == postId } }
+            .map { Result.of(it) }
+            .onErrorReturn { Result.error(Exception(it)) }
     }
 
     fun getAlbums(): Observable<Result<List<Album>, Exception>> {

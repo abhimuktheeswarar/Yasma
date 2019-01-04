@@ -81,6 +81,8 @@ dependencies {
     androidTestImplementation testLibraries.androidTestCore
     androidTestImplementation testLibraries.androidJunit
     androidTestImplementation testLibraries.runner
+    androidTestImplementation testLibraries.rules
     androidTestImplementation testLibraries.espresso
+    androidTestImplementation testLibraries.espressoContrib
     androidTestImplementation testLibraries.navigation
 }

@@ -33,7 +33,7 @@ class InMemoryDataStore {
 
     fun setPostComments(postCommentList: List<PostComment>) {
 
-        postComments.put(postCommentList.first().id, postCommentList)
+        postComments.put(postCommentList.first().postId, postCommentList)
 
     }
 
@@ -109,7 +109,7 @@ class InMemoryDataStore {
 
     fun getUserDetail(userId: Int): User? {
 
-        return users[userId]
+        return userDetails[userId]
     }
 
 }

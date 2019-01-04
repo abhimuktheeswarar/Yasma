@@ -1,6 +1,7 @@
 package msa.yasma
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -24,6 +25,23 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
         bottomNavigationView.setupWithNavController(navController)
 
+        navController.addOnNavigatedListener { controller, destination ->
+
+            when (destination.id) {
+
+                R.id.postListFragment, R.id.albumListFragment -> {
+
+                    bottomNavigationView.visibility = View.VISIBLE
+                    supportActionBar?.setDisplayShowTitleEnabled(true)
+                }
+
+                R.id.postDetailFragment, R.id.albumDetailFragment -> {
+
+                    bottomNavigationView.visibility = View.GONE
+                    supportActionBar?.setDisplayShowTitleEnabled(false)
+                }
+            }
+        }
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
